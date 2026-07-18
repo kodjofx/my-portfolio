@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Kodjo Sunday</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .contact-wrap {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .contact-form label {
+    font-weight: bold;
+    margin-bottom: -8px;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #1f3f5f;
+    background-color: #0d2338;
+    color: #fff;
+    font-size: 15px;
+  }
+  .contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  .error-text {
+    color: #ff5c5c;
+    font-size: 13px;
+    margin-top: -10px;
+    display: none;
+  }
+  .contact-form button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #4aa8ff;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .contact-form button:hover {
+    background-color: #2d8fe0;
+  }
+  .success-msg {
+    display: none;
+    background-color: #16324f;
+    color: #2ecc71;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Kodjo Sunday</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="project.html">Project</a>
+    <a href="planner.html">Planner</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="page contact-wrap">
+  <h2>Contact Me</h2>
+  <p>Have a question or want to work together? Fill out the form below.</p>
+
+  <form class="contact-form" id="contactForm" novalidate>
+    <label for="name">Full Name</label>
+    <input type="text" id="name" placeholder="Your name">
+    <span class="error-text" id="nameError">Please enter your name.</span>
+
+    <label for="email">Email Address</label>
+    <input type="email" id="email" placeholder="you@example.com">
+    <span class="error-text" id="emailError">Please enter a valid email address.</span>
+
+    <label for="message">Message</label>
+    <textarea id="message" placeholder="Your message"></textarea>
+    <span class="error-text" id="messageError">Please enter a message (at least 10 characters).</span>
+
+    <button type="submit">Send Message</button>
+  </form>
+
+  <div class="success-msg" id="successMsg">
+    Thanks for reaching out! Your message has been received.
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Kodjo Sunday | MIVA Open University</p>
+</footer>
+
+<script>
+  const form = document.getElementById("contactForm");
+  const nameInput = document.getElementById("name");
+  const emailInput = document.getElementById("email");
+  const messageInput = document.getElementById("message");
+
+  const nameError = document.getElementById("nameError");
+  const emailError = document.getElementById("emailError");
+  const messageError = document.getElementById("messageError");
+  const successMsg = document.getElementById("successMsg");
+
+  function isValidEmail(value) {
+    // basic email pattern check
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return pattern.test(value);
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); // stop actual form submission (no backend here)
+
+    let isValid = true;
+
+    // Name check
+    if (nameInput.value.trim() === "") {
+      nameError.style.display = "block";
+      isValid = false;
+    } else {
+      nameError.style.display = "none";
+    }
+
+    // Email check
+    if (!isValidEmail(emailInput.value.trim())) {
+      emailError.style.display = "block";
+      isValid = false;
+    } else {
+      emailError.style.display = "none";
+    }
+
+    // Message check
+    if (messageInput.value.trim().length < 10) {
+      messageError.style.display = "block";
+      isValid = false;
+    } else {
+      messageError.style.display = "none";
+    }
+
+    if (isValid) {
+      successMsg.style.display = "block";
+      form.reset();
+
+      // Hide success message after a few seconds
+      setTimeout(() => {
+        successMsg.style.display = "none";
+      }, 4000);
+    } else {
+      successMsg.style.display = "none";
+    }
+  });
+</script>
+
+</body>
+</html>

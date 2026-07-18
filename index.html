@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kodjo Sunday | Portfolio</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<header>
+
+    <h1>Kodjo Sunday</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="project.html">Project</a>
+        <a href="planner.html">Planner</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+</header>
+
+<section class="hero">
+
+    <img src="../images/vs c0de img.PNG" alt="Kodjo Sunday">
+
+    <div class="hero-text">
+
+        <h2>Welcome to My Portfolio</h2>
+
+        <h3>I am a <span id="typing-text"></span></h3>
+
+        <p>
+            I am a passionate Cybersecurity student who enjoys web development,
+            programming and learning new technologies. My goal is to become one
+            of Africa's leading cybersecurity professionals.
+        </p>
+
+        <a href="about.html" class="btn">Learn More</a>
+
+    </div>
+
+
+</section>
+
+<section>
+
+<h2>Biography</h2>
+
+<p>
+I am currently studying Cybersecurity. I enjoy building websites,
+learning programming and solving technology problems.
+</p>
+
+</section>
+
+<footer>
+
+<p>© 2026 Kodjo Sunday | MIVA Open University</p>
+
+</footer>
+        
+<script>
+  const roles = [
+    "Cybersecurity Student",
+    "Web Developer",
+    "Future Security Analyst"
+  ];
+
+  const typingSpan = document.getElementById("typing-text");
+  let roleIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function typeLoop() {
+    const currentRole = roles[roleIndex];
+
+    if (isDeleting) {
+      typingSpan.textContent = currentRole.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      typingSpan.textContent = currentRole.substring(0, charIndex + 1);
+      charIndex++;
+    }
+
+    let typeSpeed = isDeleting ? 40 : 80;
+
+    if (!isDeleting && charIndex === currentRole.length) {
+      typeSpeed = 1500; // pause at full word before deleting
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      roleIndex = (roleIndex + 1) % roles.length; // move to next role
+      typeSpeed = 300; // small pause before typing next word
+    }
+
+    setTimeout(typeLoop, typeSpeed);
+  }
+
+  typeLoop(); // start on page load
+</script>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+    <source src="../images/audio/Freshness.mp3">
+</audio>
+
+<!-- Music Button -->
+<button id="musicBtn">▶ Play Music</button>
+
+<script>
+const music = document.getElementById("bgMusic");
+const button = document.getElementBSyId("musicBtn");
+
+button.addEventListener("click", () => {
+    if (music.paused) {
+        music.play();
+        button.innerHTML = "⏸ Pause Music";
+    } else {
+        music.pause();
+        button.innerHTML = "▶ Play Music";
+    }
+});
+</script>
+
+</body>
+</html>
